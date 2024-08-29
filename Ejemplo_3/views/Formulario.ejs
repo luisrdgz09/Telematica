@@ -1,0 +1,101 @@
+<%- include("template/rotulo") %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario y Tabla</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid rgba(2, 1, 1, 0.849);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #b92525;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/bInicio">Inicio</a>
+      <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/bformulario">Formulario</a>
+          </li>
+        </ul>
+      </div>node
+    </div>
+  </nav>
+    <form id="dataForm">
+        <label for="col1">Nombres:</label>
+        <input type="text" id="col1" name="col1" required>
+        <label for="col2">Apellido:</label>
+        <input type="text" id="col2" name="col2" required>
+        <label for="col3">Peso:</label>
+        <input type="text" id="col3" name="col3" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>NOMBRES</th>
+                <th>apellidos</th>
+                <th>Peso Kg</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas se agregarán aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe
+
+            // Obtiene los valores de los campos del formulario
+            const col1 = document.getElementById('col1').value;
+            const col2 = document.getElementById('col2').value;
+            const col3 = document.getElementById('col3').value;
+
+            // Crea una nueva fila y celdas
+            const newRow = document.createElement('tr');
+            const cell1 = document.createElement('td');
+            const cell2 = document.createElement('td');
+            const cell3 = document.createElement('td');
+
+            // Asigna los valores a las celdas
+            cell1.textContent = col1;
+            cell2.textContent = col2;
+            cell3.textContent = col3;
+
+            // Agrega las celdas a la fila
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+
+            // Agrega la fila al cuerpo de la tabla
+            document.querySelector('#dataTable tbody').appendChild(newRow);
+
+            // Limpia el formulario
+            document.getElementById('dataForm').reset();
+        });
+    </script>
+</body>
+</html>
